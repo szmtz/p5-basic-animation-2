@@ -5,13 +5,17 @@
 // create a variable star
 // change star to stars to make it an array
 let stars = []; 
+let factor = 100; 
 
 function setup() {
     createCanvas(400, 400); 
     //2ND VERSION
-    for (let i = 0; i < 50; i++) {
-        stars[i] = createVector(random(-width, width), random(-height, height), random(10, width)); 
-        }
+    for (let i = 0; i < 500; i++) {
+        stars[i] = createVector(
+            random(-width*factor, width*factor), 
+            random(-height*factor, height*factor), 
+            random(400)
+        )}
     }
     // call star and set it equal to a vector with the createVector function
     // the createVector function will make an object that stores an x, y and z adds a 3d effect
@@ -26,6 +30,7 @@ function setup() {
 function draw() {
     background(0); 
     fill(255); 
+    noStroke(); 
       // NOTE: p5 has the top left corner as 0, 0 (the 0, 0 spot)
       // 2ND VERSION - to get 0,0 to actually be at the center
       //use the translate() function to change the origin point
@@ -46,7 +51,8 @@ function draw() {
     for (let star of stars){
     let x = star.x / star.z; 
     let y = star.y / star.z; 
-    let d = 16; 
+    let d = map(star.z, 0, 400, 10, 1); 
+    // 16; 
     // let d = map(star.z, 0, 400, 1, 10); // mapping the star's z value has a range between 0 and 400 and then the diameter when it's at zero will be just one
     //and then as it gets closer and closer to the viewer, it gets bigger (10)
 
@@ -54,6 +60,14 @@ function draw() {
     // circle(star.x, star.y, d); 
     // 2ND VERSION - instead of drawing the circle at the star's actual value - we'll use the previously created x and y variables
     circle(x, y, d); 
+    star.z -= 5;
+    
+    if(star.z < 1) {
+        star.x = random(-width*factor, width*factor);  
+        star.y = random(-height*factor, height*factor);  
+        star.z = 400; 
+    }
+
     }
 
 
