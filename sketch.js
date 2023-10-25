@@ -5,20 +5,31 @@
 // create a variable star
 // change star to stars to make it an array
 let stars = []; 
-let factor = 100; 
+let factor = 100;
+// 3RD iteration : begin to make it interactive
+// add a variable called speedSlider
+let speedSlider; 
+
+
 
 function setup() {
-    createCanvas(400, 400); 
+    createCanvas(640, 360);
+    //3RD VERSION - interactive - add speedSlider
+    // the range goes from 0 to 20, with an initial value of 2 and move by little 0.1 increments
+    speedSlider = createSlider(0, 20, 2, 0.1); 
+    
+
     //2ND VERSION
     for (let i = 0; i < 500; i++) {
         stars[i] = createVector(
             random(-width*factor, width*factor), 
             random(-height*factor, height*factor), 
             random(400)
-        )}
+        ); 
     }
+}
     // call star and set it equal to a vector with the createVector function
-    // the createVector function will make an object that stores an x, y and z adds a 3d effect
+    // the createVector function will make an object that stores an x, y and z that adds a 3d effect
     // since the circle is at 200, 200, create a vector where the position is at 200, 200 
     // then give it a z of zero to be flat in the middle 
 
@@ -60,7 +71,9 @@ function draw() {
     // circle(star.x, star.y, d); 
     // 2ND VERSION - instead of drawing the circle at the star's actual value - we'll use the previously created x and y variables
     circle(x, y, d); 
-    star.z -= 5;
+    // textSize(d*2)
+    // text("eZrA", x, y); 
+    star.z -= speedSlider.value();
     
     if(star.z < 1) {
         star.x = random(-width*factor, width*factor);  
