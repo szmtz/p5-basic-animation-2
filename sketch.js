@@ -12,7 +12,8 @@ function setup() {
     // since the circle is at 200, 200, create a vector where the position is at 200, 200 
     // then give it a z of zero to be flat in the middle 
 
-    star = createVector(200, 200, 0); 
+    // to start editing for 2nd animation - moved over vector to the right changing from 200 - 300
+    star = createVector(300, 200, 0); 
 }
 
 
@@ -29,7 +30,15 @@ function draw() {
     // if the z value is keeping track of a pretend number as if the circle is actually leaving the screen and coming towards me, the bigger it gets the closer it gets
     //to do that use the map() function - will take any given value that has some range to it
     
-    
+    // 2ND VERSION
+    // instead of drawing the circle at x and y, make up an x value that will be the star's x value divided by the star's z value
+    // the closer it's getting to the viewer
+    // as it gets bigger its moving out and to the right
+    // repeat with the y value
+    let x = star.x / star.z; 
+    let y = star.x / star.z; 
+
+
     let d = map(star.z, 0, 400, 1, 10); // mapping the star's z value has a range between 0 and 400 and then the diameter when it's at zero will be just one
     //and then as it gets closer and closer to the viewer, it gets bigger (10)
 
